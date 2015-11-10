@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>qml/main.qml</file>
+        <file>qml/ApplicationGrid.qml</file>
+        <file>qml/ExpandableItem.qml</file>
+        <file>qml/ApplicationTile.qml</file>
+        <file>qml/IntroView.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="test">resources/images/test.png</file>
+        <file alias="background">resources/images/background.jpg</file>
+        <file alias="shadow">resources/images/shadow.png</file>
+        <file alias="shadow_navigationbar">resources/images/shadow_navigationbar.png</file>
+        <file alias="profile">resources/images/profile.jpg</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>
