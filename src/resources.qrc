@@ -5,13 +5,59 @@
         <file>qml/ExpandableItem.qml</file>
         <file>qml/ApplicationTile.qml</file>
         <file>qml/IntroView.qml</file>
+        <file>qml/mainFunctions.js</file>
+        <file>qml/DayCalendar.qml</file>
+        <file>qml/DayCalendar.js</file>
+        <file>qml/ConvertDay.js</file>
+        <file>qml/GetWeather.js</file>
+        <file>qml/ImageButton.qml</file>
+        <file>qml/Weather.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="test">resources/images/test.png</file>
         <file alias="background">resources/images/background.jpg</file>
         <file alias="shadow">resources/images/shadow.png</file>
         <file alias="shadow_navigationbar">resources/images/shadow_navigationbar.png</file>
-        <file alias="profile">resources/images/profile.jpg</file>
+        <file>resources/images/square.png</file>
+        <file>resources/images/12ConGiap/cho.png</file>
+        <file>resources/images/numbers/0.png</file>
+        <file>resources/images/numbers/1.png</file>
+        <file>resources/images/numbers/2.png</file>
+        <file>resources/images/numbers/3.png</file>
+        <file>resources/images/numbers/4.png</file>
+        <file>resources/images/numbers/5.png</file>
+        <file>resources/images/numbers/6.png</file>
+        <file>resources/images/numbers/7.png</file>
+        <file>resources/images/numbers/8.png</file>
+        <file>resources/images/numbers/9.png</file>
+        <file>resources/images/12ConGiap/buffalo.png</file>
+        <file>resources/images/12ConGiap/cat.png</file>
+        <file>resources/images/12ConGiap/chick.png</file>
+        <file>resources/images/12ConGiap/chuot.png</file>
+        <file>resources/images/12ConGiap/de.png</file>
+        <file>resources/images/12ConGiap/dog.png</file>
+        <file>resources/images/12ConGiap/dragon.png</file>
+        <file>resources/images/12ConGiap/ga.png</file>
+        <file>resources/images/12ConGiap/goat.png</file>
+        <file>resources/images/12ConGiap/ho.png</file>
+        <file>resources/images/12ConGiap/horse.png</file>
+        <file>resources/images/12ConGiap/khi.png</file>
+        <file>resources/images/12ConGiap/lon.png</file>
+        <file>resources/images/12ConGiap/meo.png</file>
+        <file>resources/images/12ConGiap/mice.png</file>
+        <file>resources/images/12ConGiap/monkey.png</file>
+        <file>resources/images/12ConGiap/ngua.png</file>
+        <file>resources/images/12ConGiap/pig.png</file>
+        <file>resources/images/12ConGiap/ran.png</file>
+        <file>resources/images/12ConGiap/rong.png</file>
+        <file>resources/images/12ConGiap/snake.png</file>
+        <file>resources/images/12ConGiap/tiger.png</file>
+        <file>resources/images/12ConGiap/trau.png</file>
+        <file>resources/images/temperature/cactive.png</file>
+        <file>resources/images/temperature/cdeactive.png</file>
+        <file>resources/images/temperature/factive.png</file>
+        <file>resources/images/temperature/fdeactive.png</file>
+        <file>resources/images/rectangle.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

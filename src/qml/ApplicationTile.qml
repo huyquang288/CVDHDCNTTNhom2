@@ -6,6 +6,8 @@ import com.iktwo.qutelauncher 1.0
 Item {
     id: root
 
+    property int size: 80
+
     property alias text: label.text
     property alias source: image.source
     property var dragTarget
@@ -20,8 +22,8 @@ Item {
     Drag.hotSpot.x: width / 2
     Drag.hotSpot.y: height / 2
 
-    width: 80
-    height: 80
+    width: size
+    height: size
 
     Component.onCompleted: {
         _originalParent = parent

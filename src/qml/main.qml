@@ -2,9 +2,13 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 import com.iktwo.qutelauncher 1.0
+import "mainFunctions.js" as MF
 
 ApplicationWindow {
     id: applicationWindow
+
+    property int mouseEnteredX: -1
+    property string currentTab: "calendar"
 
     property bool isWindowActive: Qt.application.state === Qt.ApplicationActive
     property int dpi: Screen.pixelDensity * 25.4
@@ -25,7 +29,6 @@ ApplicationWindow {
     property int tilesHorizontally: getNumberOfTilesHorizontally(isScreenPortrait)
     property int tilesVertically: getNumberOfTilesVertically(isScreenPortrait)
 
-    property date now: new Date()
 
     function getNumberOfTilesHorizontally(isScreenPortrait) {
         if (isScreenPortrait) {
@@ -92,20 +95,13 @@ ApplicationWindow {
 
     Timer {
         interval: 550
+        running: true
         onTriggered: {
             PackageManager.registerBroadcast()
+
         }
     }
 
-    Timer {
-        interval: 30000
-        running: true
-        repeat: true
-        onTriggered: {
-            now= new Date();
-            PackageManager.registerBroadcast()
-        }
-    }
 
     BorderImage  {
         id: borderImageStatusBar
@@ -142,49 +138,7 @@ ApplicationWindow {
 
 
 
-    Rectangle {
-        width: parent.width/2
-        height: width
-        radius: width/2
-        anchors.top: borderImageStatusBar.top
-        anchors.topMargin: width/4
-        anchors.left: borderImageStatusBar.left
-        anchors.leftMargin: (applicationWindow.width- width)/2
-        id: facebookProfilePicture
-
-        Image {
-            source: "qrc:/images/profile"
-            anchors.fill: parent
-        }
-    }
-    Text {
-        id: facebookProfileName
-        anchors.top: facebookProfilePicture.bottom
-        anchors.topMargin: font.pixelSize/2.5
-        x: (applicationWindow.width- width)/2
-        font.pixelSize: parent.height/20
-        color: "white"
-        text: "Huy Quang"
-    }
-    Text {
-        id: time
-        anchors.top: facebookProfileName.bottom
-        anchors.topMargin: font.pixelSize/2.5
-        x: (applicationWindow.width- width)/2
-        font.pixelSize: parent.height/26
-        color: "white"
-        text: now.getHours() +" : " + ((now.getMinutes()<10) ?("0"+now.getMinutes()) :now.getMinutes())
-    }
-    Text {
-        id: dayAndTemp
-        anchors.top: facebookProfileName.bottom
-        anchors.topMargin: font.pixelSize/2.5
-        x: (applicationWindow.width- width)/2
-        font.pixelSize: parent.height/30
-        color: "white"
-        //text: now.getUTCDay() +" " +now.getDate() +" " +now.getUTCMonth() +" "
-    }
-
+    // menu cac icon
     Item {
         anchors {
             top: parent.top; topMargin: ScreenValues.statusBarHeight
@@ -210,10 +164,6 @@ ApplicationWindow {
         }
     }
 
-    MouseArea {
-        anchors.fill: parent
-        enabled: explandableItem.busy
-    }
 
     IntroView {
         anchors.fill: parent
@@ -268,4 +218,74 @@ ApplicationWindow {
         id: applicationTile
         dragTarget: applicationTile
     }
+
+
+
+    MouseArea {
+        anchors.fill: parent
+        onEntered:  {
+            mouseEnteredX= mouseX
+        }
+
+        onReleased: {
+            // vuot sang trai
+            if (Math.abs(mouseEnteredX- mouseX) >parent.width/3) {
+                if (mouseEnteredX- mouseX > parent.width/3) {
+                    dragToLeft()
+                }
+                // vuot sang phai
+                else if (mouseX- mouseEnteredX > parent.width/3) {
+                    dragToRight()
+                }
+            }
+        }
+    }
+
+
+    // day calendar tab
+    DayCalendar {
+        id: calendarTab
+        x: 0
+        anchors.top: parent.top;
+        anchors.topMargin: ScreenValues.statusBarHeight*2
+        width: parent.width
+        height: parent.height*0.7
+        visible: (currentTab==="calendar") ?true :false
+    }
+
+    Weather {
+        id: weatherTab
+        x: 0
+        anchors.top: parent.top;
+        anchors.topMargin: ScreenValues.statusBarHeight*2
+        width: parent.width
+        height: parent.height*0.7
+        visible: (currentTab==="weather") ?true :false
+    }
+
+    function dragToLeft () {
+        switch (currentTab) {
+        case "calendar": {
+            currentTab= "weather"
+            return;
+        }
+        default: {
+            return;
+        }
+        }
+    }
+
+    function dragToRight () {
+        switch (currentTab) {
+        case "weather": {
+            currentTab= "calendar"
+            return;
+        }
+        default: {
+            return;
+        }
+        }
+    }
+
+
 }
