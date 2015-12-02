@@ -11,14 +11,13 @@ function getWeather() {
             temperature= Math.round((response.query.results.channel.item.condition.temp-32)/1.8)
             Ftemperature= Math.round(response.query.results.channel.item.condition.temp)
             Ctemperature= temperature
-            weatherIconSource= response.query.results.channel.item.description
+            var weatherSource= response.query.results.channel.item.description
             weatherTextString= response.query.results.channel.item.forecast[0].text
-            //console.log(weather);
 
             // xu li weather icon source
-            var begin= weatherIconSource.indexOf('http://')
-            var end= weatherIconSource.indexOf('.gif')
-            weatherIconSource= weatherIconSource.substring(begin, end+4)
+            var begin= weatherSource.indexOf('http://')
+            var end= weatherSource.indexOf('.gif')
+            weatherIconSource= weatherSource.substring(begin, end+4)
 
         }
     }

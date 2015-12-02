@@ -71,13 +71,10 @@ ApplicationWindow {
             ScreenValues.updateScreenValues()
     }
 
-
     FocusScope {
         id: backKeyHandler
-
         height: 1
         width: 1
-
         focus: true
 
         Keys.onAsteriskPressed: {
@@ -98,7 +95,6 @@ ApplicationWindow {
         running: true
         onTriggered: {
             PackageManager.registerBroadcast()
-
         }
     }
 
@@ -110,7 +106,6 @@ ApplicationWindow {
             right: parent.right
             top: parent.top
         }
-
         height: ScreenValues.statusBarHeight
 
         source: "qrc:/images/shadow"
@@ -136,47 +131,7 @@ ApplicationWindow {
         }
     }
 
-
-
-    // menu cac icon
-    Item {
-        anchors {
-            top: parent.top; topMargin: ScreenValues.statusBarHeight
-            bottom: borderImageNavBar.top
-            left: parent.left
-            right: parent.right
-        }
-
-        ExpandableItem {
-            id: explandableItem
-            anchors.fill: parent
-            ApplicationGrid {
-                model: PackageManager
-
-                anchors.fill: parent
-
-                onPressAndHold: {
-                    applicationTile.source = "image://icon/" + model.packageName
-                    applicationTile.text = model.name
-                    explandableItem.close()
-                }
-            }
-        }
-    }
-
-
-    IntroView {
-        anchors.fill: parent
-
-        enabled: false
-        visible: false
-
-        model: ListModel {
-            ListElement { backgroundColor: "#1abd9c" }
-            ListElement { backgroundColor: "#2fcd72" }
-        }
-    }
-
+    /*
     GridView {
         /// TODO: verify in landscape mode
         anchors {
@@ -196,7 +151,24 @@ ApplicationWindow {
             height: GridView.view.cellHeight
         }
     }
+    */
 
+    /*
+    IntroView {
+        anchors.fill: parent
+
+        enabled: false
+        visible: false
+
+        model: ListModel {
+            ListElement { backgroundColor: "#1abd9c" }
+            ListElement { backgroundColor: "#2fcd72" }
+        }
+    }
+    */
+
+
+/*
     Row {
         id: rowFavorites
 
@@ -213,34 +185,37 @@ ApplicationWindow {
             }
         }
     }
+*/
 
     ApplicationTile {
         id: applicationTile
         dragTarget: applicationTile
     }
 
-
-
-    MouseArea {
-        anchors.fill: parent
-        onEntered:  {
-            mouseEnteredX= mouseX
+    // menu cac icon
+    Item {
+        anchors {
+            top: parent.top; topMargin: ScreenValues.statusBarHeight
+            bottom: borderImageNavBar.top
+            left: parent.left
+            right: parent.right
         }
 
-        onReleased: {
-            // vuot sang trai
-            if (Math.abs(mouseEnteredX- mouseX) >parent.width/3) {
-                if (mouseEnteredX- mouseX > parent.width/3) {
-                    dragToLeft()
-                }
-                // vuot sang phai
-                else if (mouseX- mouseEnteredX > parent.width/3) {
-                    dragToRight()
+        ExpandableItem {
+            id: explandableItem
+            anchors.fill: parent
+
+            ApplicationGrid {
+                model: PackageManager
+                anchors.fill: parent
+                onPressAndHold: {
+                    applicationTile.source = "image://icon/" + model.packageName
+                    applicationTile.text = model.name
+                    explandableItem.close()
                 }
             }
         }
     }
-
 
     // day calendar tab
     DayCalendar {
@@ -262,6 +237,8 @@ ApplicationWindow {
         height: parent.height*0.7
         visible: (currentTab==="weather") ?true :false
     }
+
+
 
     function dragToLeft () {
         switch (currentTab) {
@@ -286,6 +263,5 @@ ApplicationWindow {
         }
         }
     }
-
 
 }
