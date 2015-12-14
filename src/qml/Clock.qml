@@ -7,9 +7,9 @@ Item {
 
     Content.Clock {
         id: clo1
-        scale: parent.width/width/1.7
+        scale: parent.width/width/1.65
         x: (parent.width- width)/2
-        y: height*scale/2.6
+        y: height*scale/2.5
         city: "Hà Nội"; shift: 7
     }
 
@@ -18,7 +18,8 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         width: parent.width
-        height: parent.height- clo1.height*clo1.scale*1.1
+        height: parent.height- clo1.height*clo1.scale*0.9125
+        opacity: 0.8
 
         Image {
             anchors.fill: parent
@@ -39,13 +40,17 @@ Item {
 
             delegate: Content.Clock { city: cityName; shift: timeShift }
             model: ListModel {
+                ListElement { cityName: "Los Angeles"; timeShift: -8 }
                 ListElement { cityName: "New York"; timeShift: -4 }
                 ListElement { cityName: "London"; timeShift: 0 }
-                ListElement { cityName: "Oslo"; timeShift: 1 }
+                ListElement { cityName: "Munich"; timeShift: 1 }
+                ListElement { cityName: "Paris"; timeShift: 1 }
+                ListElement { cityName: "Milan"; timeShift: 1 }
                 ListElement { cityName: "Mumbai"; timeShift: 5.5 }
+                ListElement { cityName: "Hong Kong"; timeShift: 8 }
                 ListElement { cityName: "Tokyo"; timeShift: 9 }
                 ListElement { cityName: "Brisbane"; timeShift: 10 }
-                ListElement { cityName: "Los Angeles"; timeShift: -8 }
+                ListElement { cityName: "New Zealand"; timeShift: 12 }
             }
         }
     }

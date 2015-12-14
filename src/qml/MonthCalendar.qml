@@ -15,7 +15,7 @@ Item {
     Flow {
         id: row
         anchors.fill: parent
-        anchors.margins: 20
+
         spacing: 10
         layoutDirection: Qt.RightToLeft
 
@@ -26,7 +26,9 @@ Item {
             frameVisible: true
             weekNumbersVisible: true
 
+
             style: CalendarStyle {
+
                 gridVisible: false
                 dayDelegate: Item {
                     readonly property color sameMonthDateTextColor: "#444"
@@ -47,7 +49,7 @@ Item {
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.margins: -1
-                        width: 12
+                        width: 40
                         height: width
                         source: "qrc:/images/eventindicator.png"
                     }
@@ -94,42 +96,45 @@ Item {
             onPressAndHold: {
                 setEventWindow.visible= true;
                 showSetEventWindow.start()
-
             }
         }
-/*
+
         Component {
             id: eventListHeader
 
             Row {
                 id: eventDateRow
                 width: parent.width
-                height: eventDayLabel.height
+                height: eventDayLabel.height*1.2
                 spacing: 10
 
                 Label {
                     id: eventDayLabel
                     text: calendar.selectedDate.getDate()
-                    font.pointSize: 35
+                    font.pointSize: 40
+                    color: "#2d2121"
                 }
 
                 Column {
-                    height: eventDayLabel.height
+                    height: eventDayLabel.height*1.2
 
                     Label {
                         readonly property var options: { weekday: "long" }
                         text: Qt.locale().standaloneDayName(calendar.selectedDate.getDay(), Locale.LongFormat)
-                        font.pointSize: 18
+                        font.pointSize: 20
+                        color: "#2d2121"
                     }
                     Label {
                         text: Qt.locale().standaloneMonthName(calendar.selectedDate.getMonth())
                               + calendar.selectedDate.toLocaleDateString(Qt.locale(), " yyyy")
-                        font.pointSize: 12
+                        font.pointSize: 13
+                        color: "#2d2121"
                     }
                 }
             }
         }
 
+        // danh sach su kien trong ngay
         Rectangle {
             width: (parent.width > parent.height ? parent.width * 0.3 - parent.spacing : parent.width)
             height: (parent.height > parent.width ? parent.height * 0.3 - parent.spacing : parent.height)
@@ -152,7 +157,7 @@ Item {
                     Image {
                         anchors.top: parent.top
                         anchors.topMargin: 4
-                        width: 12
+                        width: 40
                         height: width
                         source: "qrc:/images/eventindicator.png"
                     }
@@ -187,7 +192,7 @@ Item {
                 }
             }
         }
-        */
+
     }
 
     Rectangle {
