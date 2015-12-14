@@ -13,6 +13,7 @@
 #include "screenvalues.h"
 #include "launcher.h"
 #include "system.h"
+#include "sqleventmodel.h"
 
 static QObject *package_manager_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
@@ -62,6 +63,8 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonType<ScreenValues>("com.iktwo.qutelauncher", 1, 0, "ScreenValues", screen_values_provider);
     qmlRegisterSingletonType<System>("com.iktwo.qutelauncher", 1, 0, "System", system_provider);
     qmlRegisterSingletonType<Launcher>("com.iktwo.qutelauncher", 1, 0, "Launcher", launcher_provider);
+
+    qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
 
     engine.addImageProvider(QLatin1String("icon"), new IconImageProvider());
 

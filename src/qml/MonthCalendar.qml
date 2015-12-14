@@ -3,6 +3,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Controls.Private 1.0
 import QtQuick.Controls.Styles 1.1
 import QtQuick.Controls 1.4
+import org.qtproject.examples.calendar 1.0
 import "ConvertDay.js" as CD
 
 Item {
@@ -10,6 +11,10 @@ Item {
 
     SystemPalette {
         id: systemPalette
+    }
+
+    SqlEventModel {
+        id: eventModel
     }
 
     Flow {
@@ -49,9 +54,9 @@ Item {
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.margins: -1
-                        width: 40
+                        width: 30
                         height: width
-                        source: "qrc:/images/eventindicator.png"
+                        source: "qrc:/images/resources/images/eventindicator.png"
                     }
 
                     Label {
@@ -157,9 +162,9 @@ Item {
                     Image {
                         anchors.top: parent.top
                         anchors.topMargin: 4
-                        width: 40
+                        width: 20
                         height: width
-                        source: "qrc:/images/eventindicator.png"
+                        source: "qrc:/images/resources/images/eventindicator.png"
                     }
 
                     Rectangle {
@@ -171,15 +176,17 @@ Item {
                     Column {
                         id: eventItemColumn
                         anchors.left: parent.left
-                        anchors.leftMargin: 20
+                        anchors.leftMargin: 25
                         anchors.right: parent.right
-                        height: timeLabel.height + nameLabel.height + 8
+                        height: timeLabel.height + nameLabel.height + 35
+                        spacing: 10
 
                         Label {
                             id: nameLabel
                             width: parent.width
                             wrapMode: Text.Wrap
                             text: modelData.name
+                            color: "#2d2121"
                         }
                         Label {
                             id: timeLabel
@@ -218,6 +225,7 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: font.pixelSize/2
             x: (parent.width- width)/2
+            color: "white"
         }
 
         // dong ten su kien
@@ -229,6 +237,7 @@ Item {
             anchors.topMargin: font.pixelSize
             anchors.left: parent.left
             anchors.leftMargin: font.pixelSize/1.5
+            color: "white"
 
         }
         TextArea {
@@ -247,6 +256,7 @@ Item {
         Text {
             id: eventDayText
             text: qsTr("Thời gian: ")
+            color: "white"
             font.pixelSize: eventNameText.font.pixelSize
             anchors.left: eventNameText.left
             anchors.top: eventNameText.bottom
@@ -254,7 +264,7 @@ Item {
         }
         ComboBox {
             id: hour
-            width: parent.width/7
+            width: parent.width/5
             anchors.bottom: eventDayText.bottom
             anchors.left: eventNameInput.left
             model: ["Giờ", 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
@@ -262,7 +272,7 @@ Item {
 
         ComboBox {
             id: minute
-            width: parent.width/6
+            width: parent.width/4
             anchors.left: hour.right
             anchors.leftMargin: width/2
             anchors.bottom: hour.bottom
@@ -279,7 +289,11 @@ Item {
             anchors.rightMargin: height/4
             onClicked: {
                 // luu vao csdl
-
+                //insert into Event values('Ice skating', '2015-12-19', 57600, '2015-12-20', 61200)"
+                var dat= calendar.selectedDate.getYear() +"-" +(calendar.selectedDate.getMonth()+1) +"-" +calendar.selectedDate.getDate();
+                var tim= (hour.currentIndex+5)*3600 +(minute.currentIndex-1)*60
+                var query= "insert into Event values('" +eventNameInput.text +"', '" +dat +"', " +tim +", '" +dat +"', "+(tim+1) +")";
+                eventModel.createEvent(query);
                 hour.currentIndex= 0
                 minute.currentIndex= 0;
                 eventNameInput.text= "";
@@ -299,5 +313,7 @@ Item {
         easing.type: Easing.InOutQuad
         from: 0
         to: 1
-    }
+    }    
+
+
 }

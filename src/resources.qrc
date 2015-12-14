@@ -24,6 +24,7 @@
         <file>qml/content/minute.png</file>
         <file>qml/content/quit.png</file>
         <file>qml/content/second.png</file>
+        <file>qml/Events.js</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="test">resources/images/test.png</file>
@@ -73,6 +74,7 @@
         <file>resources/images/ok.png</file>
         <file>resources/images/right.png</file>
         <file>resources/images/left.png</file>
+        <file>resources/images/eventindicator.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

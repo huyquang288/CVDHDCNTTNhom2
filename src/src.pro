@@ -2,7 +2,7 @@ TEMPLATE = app
 
 TARGET = qute-launcher
 
-QT += qml quick widgets svg network
+QT += qml quick widgets svg network sql
 
 android {
     QT += androidextras

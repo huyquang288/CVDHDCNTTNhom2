@@ -132,8 +132,7 @@ Item {
             visible: (shift===7) ?false :true
             id: cityLabel
             y: 195; anchors.horizontalCenter: parent.horizontalCenter
-            color: "#070777"
-            font.pixelSize: appWidth/47
+            color: "#070777"            
         }
     }
 }
