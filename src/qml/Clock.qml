@@ -16,8 +16,9 @@ Item {
             id: clo1
             scale: parent.width/width
             anchors.top: parent.top
-            anchors.topMargin: height/10
+            anchors.topMargin: (parent.height- ((height*2- name1.height))*scale)/2.75
             anchors.left: parent.left
+            anchors.leftMargin: (parent.width*0.2/3)*scale
             city: "Hà Nội"; shift: 7
         }
 

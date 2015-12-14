@@ -21,8 +21,8 @@ Item {
 
         Calendar {
             id: calendar
-            width: (parent.width > parent.height ? parent.width * 0.6 - parent.spacing : parent.width)
-            height: (parent.height > parent.width ? parent.height * 0.6 - parent.spacing : parent.height)
+            width: (parent.width > parent.height ? parent.width * 0.7 - parent.spacing : parent.width)
+            height: (parent.height > parent.width ? parent.height * 0.7 - parent.spacing : parent.height)
             frameVisible: true
             weekNumbersVisible: true
 
@@ -70,7 +70,7 @@ Item {
                     }
                     Label {
                         id: smalltext
-                        text: CD.getDayForMonthCalendar(styleData.date.getDate(), styleData.date.getMonth(), styleData.date.getYear())
+                        text: CD.getDayForMonthCalendar(styleData.date.getDate(), styleData.date.getMonth()+1, styleData.date.getYear())
                         font.pixelSize: dayDelegateText.font.pixelSize/1.3
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: height/4
@@ -130,8 +130,8 @@ Item {
         }
 
         Rectangle {
-            width: (parent.width > parent.height ? parent.width * 0.4 - parent.spacing : parent.width)
-            height: (parent.height > parent.width ? parent.height * 0.4 - parent.spacing : parent.height)
+            width: (parent.width > parent.height ? parent.width * 0.3 - parent.spacing : parent.width)
+            height: (parent.height > parent.width ? parent.height * 0.3 - parent.spacing : parent.height)
             border.color: Qt.darker(color, 1.2)
 
             ListView {
@@ -200,8 +200,11 @@ Item {
         Image {
             //anchors.fill: parent
             source: ""
-
         }
+        MouseArea {
+            anchors.fill: parent
+        }
+
         Text {
             id: nameOfWindow
             text: qsTr("ĐẶT SỰ KIỆN")

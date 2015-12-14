@@ -198,6 +198,7 @@ ApplicationWindow {
         anchors {
             top: monthTab.bottom
             bottom: borderImageNavBar.top
+            topMargin: parent.height*0.015
             left: parent.left
             right: parent.right
         }
@@ -250,7 +251,7 @@ ApplicationWindow {
         anchors.left: leftButton.right
         anchors.top: borderImageStatusBar.bottom
         width: parent.width*0.88
-        height: parent.height*0.56
+        height: parent.height*0.515
         opacity: 0.9
         visible: (currentTab==="month") ?true :false        
     }
