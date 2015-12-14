@@ -28,15 +28,12 @@ GridView {
         NumberAnimation { property: "scale"; to: 1.0 }
     }
 */
-    Image {
-        source: "qrc:/images/resources/images/rectangle.png"
-        anchors.fill: parent
-    }
+
     clip: true
     interactive: visible
 
     cellHeight: height/3
-    cellWidth: height/5
+    cellWidth: width/6
 
     delegate: ApplicationTile {
         id: applicationTile

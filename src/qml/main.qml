@@ -200,14 +200,19 @@ ApplicationWindow {
             left: parent.left
             right: parent.right
         }
-            ApplicationGrid {
-                model: PackageManager
-                anchors.fill: parent
-                onPressAndHold: {
-                    applicationTile.source = "image://icon/" + model.packageName
-                    applicationTile.text = model.name
-                    explandableItem.close()
-                }
+        Image {
+            source: "qrc:/images/resources/images/rectangle.png"
+            anchors.fill: parent
+            opacity: 0.8
+        }
+        ApplicationGrid {
+            model: PackageManager
+            anchors.fill: parent
+            onPressAndHold: {
+                applicationTile.source = "image://icon/" + model.packageName
+                applicationTile.text = model.name
+                explandableItem.close()
+            }
 
         }
     }
@@ -220,6 +225,7 @@ ApplicationWindow {
         width: parent.width
         height: parent.height*0.6
         visible: (currentTab==="month") ?true :false
+        opacity: 0.8
     }
 
     Clock {
@@ -229,7 +235,7 @@ ApplicationWindow {
         width: parent.width
         height: parent.height*0.6
         visible: (currentTab==="clock") ?true :false
-
+        opacity: 0.8
     }
 
     DayCalendar {
@@ -239,6 +245,7 @@ ApplicationWindow {
         width: parent.width
         height: parent.height*0.6
         visible: (currentTab==="calendar") ?true :false
+        opacity: 0.8
     }
 
     Weather {
@@ -248,6 +255,7 @@ ApplicationWindow {
         width: parent.width
         height: parent.height*0.6
         visible: (currentTab==="weather") ?true :false
+        opacity: 0.8
     }
 
     function hideAllTabs() {
