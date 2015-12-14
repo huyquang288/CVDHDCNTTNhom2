@@ -133,7 +133,7 @@ Item {
             if (stateGroup.state === "closed") {
                 stateGroup.state = "opened"
             } else {
-                stateGroup.state = "closed"
+                //stateGroup.state = "closed"
             }
         }
     }

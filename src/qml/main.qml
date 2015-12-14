@@ -8,7 +8,7 @@ ApplicationWindow {
     id: applicationWindow
 
     property int mouseEnteredX: -1
-    property string currentTab: "calendar"
+    property string currentTab: "month"
 
     property bool isWindowActive: Qt.application.state === Qt.ApplicationActive
     property int dpi: Screen.pixelDensity * 25.4
@@ -195,16 +195,11 @@ ApplicationWindow {
     // menu cac icon
     Item {
         anchors {
-            top: parent.top; topMargin: ScreenValues.statusBarHeight
+            top: monthTab.bottom
             bottom: borderImageNavBar.top
             left: parent.left
             right: parent.right
         }
-
-        ExpandableItem {
-            id: explandableItem
-            anchors.fill: parent
-
             ApplicationGrid {
                 model: PackageManager
                 anchors.fill: parent
@@ -213,35 +208,91 @@ ApplicationWindow {
                     applicationTile.text = model.name
                     explandableItem.close()
                 }
-            }
+
         }
     }
 
     // day calendar tab
+    MonthCalendar {
+        id: monthTab
+        x: 0
+        anchors.top: borderImageStatusBar.bottom
+        width: parent.width
+        height: parent.height*0.6
+        visible: (currentTab==="month") ?true :false
+    }
+
+    Clock {
+        id: clockTab
+        x: 0
+        anchors.top: monthTab.top
+        width: parent.width
+        height: parent.height*0.6
+        visible: (currentTab==="clock") ?true :false
+
+    }
+
     DayCalendar {
         id: calendarTab
         x: 0
-        anchors.top: parent.top;
-        anchors.topMargin: ScreenValues.statusBarHeight*2
+        anchors.top: monthTab.top
         width: parent.width
-        height: parent.height*0.7
+        height: parent.height*0.6
         visible: (currentTab==="calendar") ?true :false
     }
 
     Weather {
         id: weatherTab
         x: 0
-        anchors.top: parent.top;
-        anchors.topMargin: ScreenValues.statusBarHeight*2
+        anchors.top: monthTab.top
         width: parent.width
-        height: parent.height*0.7
+        height: parent.height*0.6
         visible: (currentTab==="weather") ?true :false
+    }
+
+    function hideAllTabs() {
+        weatherTab.visible= false;
+        calendarTab.visible= false;
+        clockTab.visible= false
+        monthTab.visible= false
+    }
+
+    function showTab() {
+        switch (currentTab) {
+        case "calendar": {
+            calendarTab.visible= true
+            return;
+        }
+        case "weather": {
+            weatherTab.visible= true;
+            return;
+        }
+        case "month": {
+            monthTab.visible= true;
+            return;
+        }
+        case "clock": {
+            clockTab.visible= true;
+            return;
+        }
+        default: {
+            return;
+        }
+        }
     }
 
 
 
     function dragToLeft () {
         switch (currentTab) {
+        case "month": {
+            currentTab= "clock"
+            return;
+        }
+        case "clock": {
+            currentTab= "calendar"
+            return;
+        }
         case "calendar": {
             currentTab= "weather"
             return;
@@ -254,6 +305,14 @@ ApplicationWindow {
 
     function dragToRight () {
         switch (currentTab) {
+        case "calendar": {
+            currentTab= "clock"
+            return;
+        }
+        case "clock": {
+            currentTab= "month"
+            return;
+        }
         case "weather": {
             currentTab= "calendar"
             return;

@@ -17,7 +17,7 @@ GridView {
         width: parent.width
         height: 20 * ScreenValues.dp
     }
-
+/*
     add: Transition {
         NumberAnimation { properties: "opacity"; from: 0; to: 1; duration: 450 }
         NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 500 }
@@ -27,12 +27,16 @@ GridView {
         NumberAnimation { property: "opacity"; to: 1.0 }
         NumberAnimation { property: "scale"; to: 1.0 }
     }
-
+*/
+    Image {
+        source: "qrc:/images/resources/images/rectangle.png"
+        anchors.fill: parent
+    }
     clip: true
     interactive: visible
 
-    cellHeight: height / applicationWindow.tilesVertically
-    cellWidth: width / applicationWindow.tilesHorizontally
+    cellHeight: height/3
+    cellWidth: height/5
 
     delegate: ApplicationTile {
         id: applicationTile

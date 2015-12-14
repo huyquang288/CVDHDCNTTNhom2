@@ -12,6 +12,8 @@
         <file>qml/GetWeather.js</file>
         <file>qml/ImageButton.qml</file>
         <file>qml/Weather.qml</file>
+        <file>qml/MonthCalendar.qml</file>
+        <file>qml/Clock.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="test">resources/images/test.png</file>
@@ -58,6 +60,7 @@
         <file>resources/images/temperature/factive.png</file>
         <file>resources/images/temperature/fdeactive.png</file>
         <file>resources/images/rectangle.png</file>
+        <file>resources/images/ok.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
