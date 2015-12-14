@@ -96,8 +96,8 @@ void SqlEventModel::createConnection()
     // We store the time as seconds because it's easier to query.
     query.exec("create table Event (name TEXT, startDate DATE, startTime INT, endDate DATE, endTime INT)");
     query.exec ("delete from Event");
-    query.exec("insert into Event values('Grocery shopping', '2015-12-17', 36000, '2015-12-18', 39600)");
-    query.exec("insert into Event values('Ice skating', '2015-12-19', 57600, '2015-12-20', 61200)");
+    //query.exec("insert into Event values('Grocery shopping', '2015-12-17', 36000, '2015-12-18', 39600)");
+    //query.exec("insert into Event values('Ice skating', '2015-12-19', 57600, '2015-12-20', 61200)");
 
     return;
 }
@@ -108,7 +108,7 @@ void SqlEventModel::createEvent(QString str)
     // We store the time as seconds because it's easier to query.
 
     query.exec(str);
-    query.exec("insert into Event values('Ice skating', '2015-12-21', 57600, '2015-12-22', 61200)");
+    //query.exec("insert into Event values('Ice skating', '2015-12-21', 57600, '2015-12-22', 61200)");
 
     return;
 }

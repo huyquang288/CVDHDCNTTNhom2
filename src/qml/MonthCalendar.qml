@@ -204,15 +204,23 @@ Item {
 
     Rectangle {
         id: setEventWindow
-        width: parent.width/1.5
-        height: width/2.5
+        width: parent.width/1.2
+        height: width/2
         x: (parent.height- width)/2
         y: (parent.height- height)/2
         color: "grey"
         visible: false;
-        Image {
+        ImageButton {
             //anchors.fill: parent
-            source: ""
+            source: "qrc:/images/resources/images/cancel.png"
+            anchors.top: parent.top
+            anchors.right: parent.right
+            height: parent.height/7
+            width: height
+            onClicked: {
+                parent.visible= false
+            }
+
         }
         MouseArea {
             anchors.fill: parent
@@ -279,6 +287,14 @@ Item {
             model: ["Phút", 00,01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59];
         }
 
+        Text {
+            id: warning
+            text: qsTr("THIẾU THÔNG TIN")
+            color: "red"
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+        }
+
         ImageButton {
             source: "qrc:/images/resources/images/ok.png"
             width: parent.width/4
@@ -288,16 +304,20 @@ Item {
             anchors.bottomMargin: height/4
             anchors.rightMargin: height/4
             onClicked: {
-                // luu vao csdl
-                //insert into Event values('Ice skating', '2015-12-19', 57600, '2015-12-20', 61200)"
-                var dat= calendar.selectedDate.getYear() +"-" +(calendar.selectedDate.getMonth()+1) +"-" +calendar.selectedDate.getDate();
-                var tim= (hour.currentIndex+5)*3600 +(minute.currentIndex-1)*60
-                var query= "insert into Event values('" +eventNameInput.text +"', '" +dat +"', " +tim +", '" +dat +"', "+(tim+1) +")";
-                eventModel.createEvent(query);
-                hour.currentIndex= 0
-                minute.currentIndex= 0;
-                eventNameInput.text= "";
-                parent.visible= false;
+                if (eventNameInput=="" || hour.currentIndex==0 || minute.currentIndex==0) {
+
+                }
+                else {
+                    // luu vao csdl
+                    var dat= calendar.selectedDate.getFullYear() +"-" +(calendar.selectedDate.getMonth()+1) +"-" +calendar.selectedDate.getDate();
+                    var tim= (hour.currentIndex+5)*3600 +(minute.currentIndex-1)*60
+                    var query= "insert into Event values('" +eventNameInput.text +"', '" +dat.toString() +"', " +tim.toString() +", '" +dat.toString() +"', "+(tim+1).toString() +")";
+                    eventModel.createEvent(query);
+                    hour.currentIndex= 0
+                    minute.currentIndex= 0;
+                    eventNameInput.text= "";
+                    parent.visible= false;
+                }
             }
 
         }
