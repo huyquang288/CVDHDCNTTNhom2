@@ -188,6 +188,14 @@ ApplicationWindow {
     }
 */
 
+    MouseArea {
+        anchors.fill: parent
+        onDoubleClicked: {
+            currentTab="month"
+            rightButton.visible=true;
+        }
+    }
+
     ApplicationTile {
         id: applicationTile
         dragTarget: applicationTile
@@ -222,6 +230,8 @@ ApplicationWindow {
     }
 
 
+
+
     ImageButton {
         id: leftButton
         source: "qrc:/images/resources/images/left.png"
@@ -229,6 +239,7 @@ ApplicationWindow {
         x: 0
         height: monthTab.height
         width: parent.width*0.06
+        visible: (currentTab=="month") ?false :true
         opacity: 0.7
         onClicked: {
             leftButtonClick()
@@ -236,6 +247,7 @@ ApplicationWindow {
     }
 
     ImageButton {
+        id: rightButton
         source: "qrc:/images/resources/images/right.png"
         anchors.top: monthTab.top
         anchors.left: monthTab.right
@@ -243,6 +255,7 @@ ApplicationWindow {
         width: leftButton.width
         opacity: 0.7
         onClicked: {
+            leftButton.visible=true
             rightButtonClick()
         }
     }
@@ -250,9 +263,9 @@ ApplicationWindow {
     // day calendar tab
     MonthCalendar {
         id: monthTab
-        anchors.left: leftButton.right
+        x: 0
         anchors.top: borderImageStatusBar.bottom
-        width: parent.width*0.88
+        width: parent.width*0.94
         height: parent.height*0.515
         opacity: 0.9
         visible: (currentTab==="month") ?true :false        
@@ -260,31 +273,31 @@ ApplicationWindow {
 
     Clock {
         id: clockTab
-        x: monthTab.x
-        anchors.top: monthTab.top
-        width: monthTab.width
-        height: monthTab.height
-        opacity: monthTab.opacity
+        anchors.left: leftButton.right
+        anchors.top: borderImageStatusBar.bottom
+        width: parent.width*0.88
+        height: parent.height*0.515
+        opacity: 0.9
         visible: (currentTab==="clock") ?true :false        
     }
 
     DayCalendar {
         id: calendarTab
-        x: monthTab.x
-        anchors.top: monthTab.top
-        width: monthTab.width
-        height: monthTab.height
-        opacity: monthTab.opacity
+        x: clockTab.x
+        anchors.top: clockTab.top
+        width: clockTab.width
+        height: clockTab.height
+        opacity: clockTab.opacity
         visible: (currentTab==="calendar") ?true :false        
     }
 
     Weather {
         id: weatherTab
-        x: monthTab.x
-        anchors.top: monthTab.top
-        width: monthTab.width
-        height: monthTab.height
-        opacity: monthTab.opacity
+        x: clockTab.x
+        anchors.top: clockTab.top
+        width: clockTab.width
+        height: clockTab.height
+        opacity: clockTab.opacity
         visible: (currentTab==="weather") ?true :false
     }
 
@@ -301,6 +314,12 @@ ApplicationWindow {
         }
         case "calendar": {
             currentTab= "weather"
+            return;
+        }
+        case "weather": {
+            currentTab=""
+            leftButton.visible=false
+            rightButton.visible=false
             return;
         }
         default: {
