@@ -61,6 +61,8 @@
         <file>resources/images/temperature/fdeactive.png</file>
         <file>resources/images/rectangle.png</file>
         <file>resources/images/ok.png</file>
+        <file>resources/images/right.png</file>
+        <file>resources/images/left.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

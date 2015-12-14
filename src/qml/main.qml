@@ -8,7 +8,7 @@ ApplicationWindow {
     id: applicationWindow
 
     property int mouseEnteredX: -1
-    property string currentTab: "month"
+    property string currentTab: "calendar"
 
     property bool isWindowActive: Qt.application.state === Qt.ApplicationActive
     property int dpi: Screen.pixelDensity * 25.4
@@ -70,7 +70,7 @@ ApplicationWindow {
         if (activeScreen)
             ScreenValues.updateScreenValues()
     }
-
+/*
     FocusScope {
         id: backKeyHandler
         height: 1
@@ -89,7 +89,7 @@ ApplicationWindow {
             }
         }
     }
-
+*/
     Timer {
         interval: 550
         running: true
@@ -217,81 +217,74 @@ ApplicationWindow {
         }
     }
 
+
+    ImageButton {
+        source: "qrc:/images/resources/images/left.png"
+        anchors.top: monthTab.top
+        x: 0
+        height: monthTab.height
+        width: parent.width*0.075
+        opacity: 0.7
+        onClicked: {
+            leftButtonClick()
+        }
+    }
+
+    ImageButton {
+        source: "qrc:/images/resources/images/right.png"
+        anchors.top: monthTab.top
+        anchors.left: monthTab.right
+        height: monthTab.height
+        width: parent.width*0.075
+        opacity: 0.7
+        onClicked: {
+            rightButtonClick()
+        }
+    }
+
     // day calendar tab
     MonthCalendar {
         id: monthTab
-        x: 0
+        x: parent.width*0.15
         anchors.top: borderImageStatusBar.bottom
-        width: parent.width
-        height: parent.height*0.6
-        visible: (currentTab==="month") ?true :false
+        width: parent.width*0.85
+        height: parent.height*0.56
         opacity: 0.8
+        visible: (currentTab==="month") ?true :false        
     }
 
     Clock {
         id: clockTab
-        x: 0
+        x: monthTab.x
         anchors.top: monthTab.top
-        width: parent.width
-        height: parent.height*0.6
-        visible: (currentTab==="clock") ?true :false
-        opacity: 0.8
+        width: monthTab.width
+        height: monthTab.height
+        opacity: monthTab.opacity
+        visible: (currentTab==="clock") ?true :false        
     }
 
     DayCalendar {
         id: calendarTab
-        x: 0
+        x: monthTab.x
         anchors.top: monthTab.top
-        width: parent.width
-        height: parent.height*0.6
-        visible: (currentTab==="calendar") ?true :false
-        opacity: 0.8
+        width: monthTab.width
+        height: monthTab.height
+        opacity: monthTab.opacity
+        visible: (currentTab==="calendar") ?true :false        
     }
 
     Weather {
         id: weatherTab
-        x: 0
+        x: monthTab.x
         anchors.top: monthTab.top
-        width: parent.width
-        height: parent.height*0.6
+        width: monthTab.width
+        height: monthTab.height
+        opacity: monthTab.opacity
         visible: (currentTab==="weather") ?true :false
-        opacity: 0.8
-    }
-
-    function hideAllTabs() {
-        weatherTab.visible= false;
-        calendarTab.visible= false;
-        clockTab.visible= false
-        monthTab.visible= false
-    }
-
-    function showTab() {
-        switch (currentTab) {
-        case "calendar": {
-            calendarTab.visible= true
-            return;
-        }
-        case "weather": {
-            weatherTab.visible= true;
-            return;
-        }
-        case "month": {
-            monthTab.visible= true;
-            return;
-        }
-        case "clock": {
-            clockTab.visible= true;
-            return;
-        }
-        default: {
-            return;
-        }
-        }
     }
 
 
-
-    function dragToLeft () {
+    function leftButtonClick () {
         switch (currentTab) {
         case "month": {
             currentTab= "clock"
@@ -311,7 +304,7 @@ ApplicationWindow {
         }
     }
 
-    function dragToRight () {
+    function rightButtonClick () {
         switch (currentTab) {
         case "calendar": {
             currentTab= "clock"
