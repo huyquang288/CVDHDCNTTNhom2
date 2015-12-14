@@ -3,6 +3,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Controls.Private 1.0
 import QtQuick.Controls.Styles 1.1
 import QtQuick.Controls 1.4
+import "ConvertDay.js" as CD
 
 Item {
     id: monthCalendar
@@ -24,9 +25,6 @@ Item {
             height: (parent.height > parent.width ? parent.height * 0.6 - parent.spacing : parent.height)
             frameVisible: true
             weekNumbersVisible: true
-            //selectedDate: new Date(2014, 0, 1)
-            //focus: true
-
 
             style: CalendarStyle {
                 gridVisible: false
@@ -72,7 +70,7 @@ Item {
                     }
                     Label {
                         id: smalltext
-                        text: styleData.date.getDate() +30
+                        text: CD.getDayForMonthCalendar()
                         font.pixelSize: dayDelegateText.font.pixelSize/1.3
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: height/4

@@ -70,13 +70,13 @@ ApplicationWindow {
         if (activeScreen)
             ScreenValues.updateScreenValues()
     }
-/*
+
     FocusScope {
         id: backKeyHandler
         height: 1
         width: 1
         focus: true
-
+/*
         Keys.onAsteriskPressed: {
             if (explandableItem.isOpened) {
                 explandableItem.close()
@@ -88,8 +88,9 @@ ApplicationWindow {
                 explandableItem.close()
             }
         }
-    }
 */
+    }
+
     Timer {
         interval: 550
         running: true
@@ -284,7 +285,7 @@ ApplicationWindow {
     }
 
 
-    function leftButtonClick () {
+    function rightButtonClick () {
         switch (currentTab) {
         case "month": {
             currentTab= "clock"
@@ -304,7 +305,7 @@ ApplicationWindow {
         }
     }
 
-    function rightButtonClick () {
+    function leftButtonClick () {
         switch (currentTab) {
         case "calendar": {
             currentTab= "clock"

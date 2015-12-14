@@ -20,25 +20,6 @@ Item {
         height: parent.height
         opacity: 0.75
 
-        MouseArea {
-            anchors.fill: parent
-            onEntered:  {
-                mouseEnteredX= mouseX
-            }
-
-            onReleased: {
-                // vuot sang trai
-                if (Math.abs(mouseEnteredX- mouseX) >parent.width/3) {
-                    if (mouseEnteredX- mouseX > parent.width/3) {
-                        dragToLeft()
-                    }
-                    // vuot sang phai
-                    else if (mouseX- mouseEnteredX > parent.width/3) {
-                        dragToRight()
-                    }
-                }
-            }
-        }
 
         Timer {
             running: true
