@@ -147,11 +147,11 @@ Item {
 
             ListView {
                 id: eventsListView
-                spacing: 4
+                spacing: 15
                 clip: true
                 header: eventListHeader
                 anchors.fill: parent
-                anchors.margins: 10
+                anchors.margins: 15
                 model: eventModel.eventsForDate(calendar.selectedDate)
 
                 delegate: Rectangle {
@@ -187,11 +187,13 @@ Item {
                             wrapMode: Text.Wrap
                             text: modelData.name
                             color: "#2d2121"
+                            font.pixelSize: eventItemColumn.height/2.5
                         }
                         Label {
                             id: timeLabel
                             width: parent.width
                             wrapMode: Text.Wrap
+                            font.pixelSize: nameLabel.font.pixelSize
                             text: modelData.startDate.toLocaleTimeString(calendar.locale, Locale.ShortFormat)
                             color: "#aaa"
                         }

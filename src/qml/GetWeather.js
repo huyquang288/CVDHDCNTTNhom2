@@ -19,6 +19,26 @@ function getWeather() {
             var end= weatherSource.indexOf('.gif')
             weatherIconSource= weatherSource.substring(begin, end+4)
 
+
+            t1Text= response.query.results.channel.item.forecast[1].day +", "
+            t1Text+= response.query.results.channel.item.forecast[1].date +"\n"
+            t1Text+= response.query.results.channel.item.forecast[1].text +": "
+            t1Text+= Math.round((response.query.results.channel.item.forecast[1].low-32)/1.8) +"~" +Math.round((response.query.results.channel.item.forecast[1].high-32)/1.8) +"°C";
+
+            t2Text= response.query.results.channel.item.forecast[2].day +", "
+            t2Text+= response.query.results.channel.item.forecast[2].date +"\n"
+            t2Text+= response.query.results.channel.item.forecast[2].text +": "
+            t2Text+= Math.round((response.query.results.channel.item.forecast[2].low-32)/1.8) +"~" +Math.round((response.query.results.channel.item.forecast[2].high-32)/1.8) +"°C";
+
+            t3Text= response.query.results.channel.item.forecast[3].day +", "
+            t3Text+= response.query.results.channel.item.forecast[3].date +"\n"
+            t3Text+= response.query.results.channel.item.forecast[3].text +": "
+            t3Text+= Math.round((response.query.results.channel.item.forecast[3].low-32)/1.8) +"~" +Math.round((response.query.results.channel.item.forecast[3].high-32)/1.8) +"°C";
+
+            t4Text= response.query.results.channel.item.forecast[4].day +", "
+            t4Text+= response.query.results.channel.item.forecast[4].date +"\n"
+            t4Text+= response.query.results.channel.item.forecast[4].text +": "
+            t4Text+= Math.round((response.query.results.channel.item.forecast[4].low-32)/1.8) +"~" +Math.round((response.query.results.channel.item.forecast[4].high-32)/1.8) +"°C";
         }
     }
     xmlhttp.open("GET", url, true);

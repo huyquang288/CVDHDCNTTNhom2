@@ -10,6 +10,10 @@ Item {
     property int temperature: 0;
     property string weatherIconSource
     property string weatherTextString
+    property string t1Text;
+    property string t2Text;
+    property string t3Text;
+    property string t4Text;
 
 
     Timer {
@@ -149,16 +153,85 @@ Item {
     }
     Rectangle {
         id: nextDaysWeather
-        width: parent.width*0.95
+        width: parent.width
         height: width/5
-        x: parent.width*0.025
+        x: 0
         anchors.top: square.bottom
         anchors.topMargin: height*0.06
+        Rectangle {
+            width: parent.width/2
+            height: parent.height/2
+            anchors.top: parent.top
+            anchors.left: parent.left
+            Image {
+                source: "qrc:/images/resources/images/rectangle.png"
+                anchors.fill: parent
+                opacity: 0.8
+            }
+            Text {
+                id: t1
+                text: t1Text
+                anchors.centerIn: parent
+                font.pixelSize: weatherText.font.pixelSize/1.2
+                color: "#093e9b"
+            }
+        }
 
-        Image {
-            source: "qrc:/images/resources/images/rectangle.png"
-            anchors.fill: parent
-            opacity: 0.8
+        Rectangle {
+            width: parent.width/2
+            height: parent.height/2
+            anchors.top: parent.top
+            anchors.right: parent.right
+            Image {
+                source: "qrc:/images/resources/images/rectangle.png"
+                anchors.fill: parent
+                opacity: 0.8
+            }
+            Text {
+                id: t2
+                text: t2Text
+                anchors.centerIn: parent
+                font.pixelSize: weatherText.font.pixelSize/1.2
+                color: "#093e9b"
+            }
+        }
+
+        Rectangle {
+            width: parent.width/2
+            height: parent.height/2
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            Image {
+                source: "qrc:/images/resources/images/rectangle.png"
+                anchors.fill: parent
+                opacity: 0.8
+            }
+            Text {
+                id: t3
+                text: t3Text
+                anchors.centerIn: parent
+                font.pixelSize: weatherText.font.pixelSize/1.2
+                color: "#093e9b"
+            }
+        }
+
+        Rectangle {
+            width: parent.width/2
+            height: parent.height/2
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            Image {
+                source: "qrc:/images/resources/images/rectangle.png"
+                anchors.fill: parent
+                opacity: 0.8
+            }
+            Text {
+                id: t4
+                text: t4Text
+                anchors.centerIn: parent
+                font.pixelSize: weatherText.font.pixelSize/1.2
+                color: "#093e9b"
+            }
         }
     }
 }
