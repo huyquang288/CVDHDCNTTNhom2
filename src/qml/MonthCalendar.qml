@@ -70,7 +70,7 @@ Item {
                     }
                     Label {
                         id: smalltext
-                        text: CD.getDayForMonthCalendar()
+                        text: CD.getDayForMonthCalendar(styleData.date.getDate(), styleData.date.getMonth(), styleData.date.getYear())
                         font.pixelSize: dayDelegateText.font.pixelSize/1.3
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: height/4
@@ -262,13 +262,20 @@ Item {
 
         ImageButton {
             source: "qrc:/images/resources/images/ok.png"
-            width: parent.width/3
-            height: parent.height/4
+            width: parent.width/4
+            height: parent.height/5
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.bottomMargin: height/4
             anchors.rightMargin: height/4
+            onClicked: {
+                // luu vao csdl
 
+                hour.currentIndex= 0
+                minute.currentIndex= 0;
+                eventNameInput.text= "";
+                parent.visible= false;
+            }
 
         }
 

@@ -14,16 +14,6 @@
         <file>qml/Weather.qml</file>
         <file>qml/MonthCalendar.qml</file>
         <file>qml/Clock.qml</file>
-        <file>qml/content/arrow.png</file>
-        <file>qml/content/background.png</file>
-        <file>qml/content/center.png</file>
-        <file>qml/content/clock.png</file>
-        <file>qml/content/Clock.qml</file>
-        <file>qml/content/clock-night.png</file>
-        <file>qml/content/hour.png</file>
-        <file>qml/content/minute.png</file>
-        <file>qml/content/quit.png</file>
-        <file>qml/content/second.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="test">resources/images/test.png</file>
@@ -73,6 +63,7 @@
         <file>resources/images/ok.png</file>
         <file>resources/images/right.png</file>
         <file>resources/images/left.png</file>
+        <file>resources/images/background.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -13,13 +13,9 @@ Item {
 
     Rectangle {
         id: detailRectangle
-        color: "white"
-        y:50
-        x: 0
-        width: parent.width
-        height: parent.height
-        opacity: 0.75
-
+        color: "white"      
+        anchors.fill: parent
+        opacity: 0.9
 
         Timer {
             running: true

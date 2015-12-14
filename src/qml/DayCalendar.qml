@@ -35,19 +35,21 @@ Item {
     Rectangle {
         id: detailRectangle
         color: "white"
-        y:50
-        x: 0
-        width: parent.width
-        height: parent.height
+        anchors.fill: parent
         opacity: 0.75
 
+        Image {
+            anchors.fill: parent
+            source: "qrc:/images/resources/images/background.png"
+            opacity: 0.85
+        }
 
         Rectangle {
             id: square
             y: height/20
-            x: parent.width*0.125
-            width: parent.width*0.75
-            height: width*0.925
+            x: parent.width*0.075
+            width: parent.width*0.85
+            height: parent.height*0.75
 
             MouseArea {
                 //id: mouseAreaForSolarDay;
@@ -77,7 +79,7 @@ Item {
             Image {
                 source: "qrc:/images/resources/images/square.png"
                 anchors.fill: parent
-                opacity: 0.4
+                opacity: 0.8
             }
 
             // anh nam am lich
@@ -143,8 +145,6 @@ Item {
                 height: width
             }
         }
-
-
 
         Text {
             id: day1

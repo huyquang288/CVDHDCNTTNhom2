@@ -8,7 +8,7 @@ ApplicationWindow {
     id: applicationWindow
 
     property int mouseEnteredX: -1
-    property string currentTab: "calendar"
+    property string currentTab: "month"
 
     property bool isWindowActive: Qt.application.state === Qt.ApplicationActive
     property int dpi: Screen.pixelDensity * 25.4
@@ -204,7 +204,7 @@ ApplicationWindow {
         Image {
             source: "qrc:/images/resources/images/rectangle.png"
             anchors.fill: parent
-            opacity: 0.8
+            opacity: 0.85
         }
         ApplicationGrid {
             model: PackageManager
@@ -220,11 +220,12 @@ ApplicationWindow {
 
 
     ImageButton {
+        id: leftButton
         source: "qrc:/images/resources/images/left.png"
         anchors.top: monthTab.top
         x: 0
         height: monthTab.height
-        width: parent.width*0.075
+        width: parent.width*0.06
         opacity: 0.7
         onClicked: {
             leftButtonClick()
@@ -236,7 +237,7 @@ ApplicationWindow {
         anchors.top: monthTab.top
         anchors.left: monthTab.right
         height: monthTab.height
-        width: parent.width*0.075
+        width: leftButton.width
         opacity: 0.7
         onClicked: {
             rightButtonClick()
@@ -246,11 +247,11 @@ ApplicationWindow {
     // day calendar tab
     MonthCalendar {
         id: monthTab
-        x: parent.width*0.15
+        anchors.left: leftButton.right
         anchors.top: borderImageStatusBar.bottom
-        width: parent.width*0.85
+        width: parent.width*0.88
         height: parent.height*0.56
-        opacity: 0.8
+        opacity: 0.9
         visible: (currentTab==="month") ?true :false        
     }
 
