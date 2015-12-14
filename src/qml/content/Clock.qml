@@ -129,6 +129,7 @@ Item {
         }
 
         Text {
+            visible: (shift===7) ?false :true
             id: cityLabel
             y: 195; anchors.horizontalCenter: parent.horizontalCenter
             color: "#070777"

@@ -55,6 +55,7 @@ Item {
                     Label {
                         id: dayDelegateText
                         text: styleData.date.getDate()
+                        font.pixelSize: parent.height/3
                         anchors.centerIn: parent
                         color: {
                             var color = invalidDatecolor;
@@ -71,7 +72,7 @@ Item {
                     Label {
                         id: smalltext
                         text: CD.getDayForMonthCalendar(styleData.date.getDate(), styleData.date.getMonth()+1, styleData.date.getYear())
-                        font.pixelSize: dayDelegateText.font.pixelSize/1.3
+                        font.pixelSize: dayDelegateText.font.pixelSize/2
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: height/4
                         anchors.right: parent.right

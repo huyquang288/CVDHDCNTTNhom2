@@ -35,9 +35,9 @@ Item {
 
     Rectangle {
         id: square
-        y: height/20
-        x: parent.width*0.075
-        width: parent.width*0.85
+        y: height/50
+        x: (parent.width- width)/2
+        width: parent.width*0.77
         height: parent.height*0.77
 
         MouseArea {
@@ -61,14 +61,13 @@ Item {
                     }
                     changeDay();
                 }
-                //console.log("release");
             }
         }
 
         Image {
             source: "qrc:/images/resources/images/square.png"
             anchors.fill: parent
-            opacity: 0.6
+            opacity: 0.3
         }
 
         // anh nam am lich
@@ -135,13 +134,23 @@ Item {
         }
     }
 
+    Image {
+        source: "qrc:/images/resources/images/rectangle.png"
+        y: day1.y- day1.height*0.25
+        height: day3.y + day3.height*1.25- day1.y+ day1.height*0.25
+        width: parent.width*0.9
+        x: (parent.width- width)/2
+        opacity: 0.8
+    }
+
+    // ngay
     Text {
         id: day1
         color: "#093e9b"
         font.pixelSize: dayCal.width/28
         text: qsTr("Ngày")
         anchors.top: square.bottom
-        anchors.topMargin: square.height/20
+        anchors.topMargin: square.height/22
         x: (parent.width/3- width)/2
     }
     Text {
@@ -154,6 +163,7 @@ Item {
         text: lunarDayNumber
     }
     Text {
+        id: day3
         font.pixelSize: day1.font.pixelSize/1.1
         color: "#093e9b"
         text: DC.can[Math.floor(CD.jdFromDate(dateToShow, monthToShow, yearToShow) +9.5)%10] +" " +DC.chiForText[Math.floor(CD.jdFromDate(dateToShow, monthToShow, yearToShow) +1.5)%12]

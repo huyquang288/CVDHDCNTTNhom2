@@ -39,6 +39,12 @@ Item {
         width: parent.width*0.75
         height: width*0.925
 
+        Image {
+            source: "qrc:/images/resources/images/square.png"
+            anchors.fill: parent
+            opacity: 0.3
+        }
+
         Text {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
@@ -150,8 +156,9 @@ Item {
         anchors.topMargin: height*0.06
 
         Image {
-            source: "qrc:/images/resource/images/rectangle.png"
+            source: "qrc:/images/resources/images/rectangle.png"
             anchors.fill: parent
+            opacity: 0.8
         }
     }
 }

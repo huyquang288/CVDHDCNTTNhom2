@@ -210,11 +210,13 @@ ApplicationWindow {
         ApplicationGrid {
             model: PackageManager
             anchors.fill: parent
+            /*
             onPressAndHold: {
                 applicationTile.source = "image://icon/" + model.packageName
                 applicationTile.text = model.name
                 explandableItem.close()
             }
+            */
 
         }
     }

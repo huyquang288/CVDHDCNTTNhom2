@@ -4,39 +4,50 @@ import "content" as Content
 
 Item {
     id: wea
+
+    Content.Clock {
+        id: clo1
+        scale: parent.width/width/1.7
+        x: (parent.width- width)/2
+        y: height*scale/2.6
+        city: "Hà Nội"; shift: 7
+    }
+
     Rectangle {
-        id: detailRectangle
-        color: "white"
-        anchors.fill: parent
-        opacity: 0.9
+        id: worldClockList
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        width: parent.width
+        height: parent.height- clo1.height*clo1.scale*1.1
 
-
-
-        Content.Clock {
-            id: clo1
-            scale: parent.width/width
-            anchors.top: parent.top
-            anchors.topMargin: (parent.height- ((height*2- name1.height))*scale)/2.75
-            anchors.left: parent.left
-            anchors.leftMargin: (parent.width*0.2/3)*scale
-            city: "Hà Nội"; shift: 7
+        Image {
+            anchors.fill: parent
+            source: "qrc:/images/resources/images/rectangle.png"
         }
 
-        Rectangle {
-            id: square
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-            width: parent.width
-            height: parent.height- clo1.width*clo1.scale
+        ListView {
+            id: clockview
+            anchors.fill: parent
+            orientation: ListView.Horizontal
+            //cacheBuffer: 2000
+            //snapMode: ListView.SnapOneItem
+            highlightRangeMode: ListView.ApplyRange
 
-            Image {
-                anchors.fill: parent
-                source: "qrc:/images/resources/images/rectangle.png"
-            }
+            clip: true
+            interactive: visible
 
-            ListView {
 
+            delegate: Content.Clock { city: cityName; shift: timeShift }
+            model: ListModel {
+                ListElement { cityName: "New York"; timeShift: -4 }
+                ListElement { cityName: "London"; timeShift: 0 }
+                ListElement { cityName: "Oslo"; timeShift: 1 }
+                ListElement { cityName: "Mumbai"; timeShift: 5.5 }
+                ListElement { cityName: "Tokyo"; timeShift: 9 }
+                ListElement { cityName: "Brisbane"; timeShift: 10 }
+                ListElement { cityName: "Los Angeles"; timeShift: -8 }
             }
         }
     }
 }
+
