@@ -55,7 +55,7 @@ public:
     SqlEventModel();
 
     Q_INVOKABLE QList<QObject*> eventsForDate(const QDate &date);
-    Q_INVOKABLE void createEvent (QString);
+    Q_INVOKABLE void editEvent (QString);
 
 private:
     static void createConnection();

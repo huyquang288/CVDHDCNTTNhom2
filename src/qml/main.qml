@@ -288,7 +288,7 @@ ApplicationWindow {
         anchors.top: clockTab.top
         width: clockTab.width
         height: clockTab.height
-        opacity: clockTab.opacity
+        opacity: 0.9
         visible: (currentTab==="calendar") ?true :false        
     }
 
@@ -298,27 +298,77 @@ ApplicationWindow {
         anchors.top: clockTab.top
         width: clockTab.width
         height: clockTab.height
-        opacity: clockTab.opacity
+        opacity: 0.9
         visible: (currentTab==="weather") ?true :false
+    }
+
+    NumberAnimation {
+        id: hideMonthTab
+        target: monthTab
+        property: "opacity"
+        duration: 300
+        from: 0.9
+        to: 0
+        easing.type: Easing.InOutQuad
+    }
+
+    NumberAnimation {
+        id: hideClocKTab
+        target: clockTab
+        property: "opacity"
+        duration: 300
+        from: 0.9
+        to: 0
+        easing.type: Easing.InOutQuad
+    }
+    NumberAnimation {
+        id: hideCalendarTab
+        target: calendarTab
+        property: "opacity"
+        duration: 300
+        from: 0.9
+        to: 0
+        easing.type: Easing.InOutQuad
+    }
+    NumberAnimation {
+        id: hideWeatherTab
+        target: weatherTab
+        property: "opacity"
+        duration: 300
+        from: 0.9
+        to: 0
+        easing.type: Easing.InOutQuad
     }
 
 
     function rightButtonClick () {
         switch (currentTab) {
         case "month": {
+            //hideMonthTab.start()
+            //monthTab.opacity= 0.9
             currentTab= "clock"
+
             return;
         }
         case "clock": {
+            //hideClocKTab.start()
+            //clockTab.opacity= 0.9
             currentTab= "calendar"
+
             return;
         }
         case "calendar": {
+            //hideCalendarTab.start()
+            //calendarTab.opacity= 0.9
             currentTab= "weather"
+
             return;
         }
         case "weather": {
+            //hideWeatherTab.start()
+            //weatherTab.opacity=0.9
             currentTab=""
+
             leftButton.visible=false
             rightButton.visible=false
             return;
@@ -332,15 +382,25 @@ ApplicationWindow {
     function leftButtonClick () {
         switch (currentTab) {
         case "calendar": {
+            //hideCalendarTab.start()
+            //calendarTab.opacity= 0.9
             currentTab= "clock"
+
             return;
         }
         case "clock": {
+            //hideClocKTab.start()
+            //clockTab.opacity=0.9
             currentTab= "month"
+
+            leftButton.visible= false
             return;
         }
         case "weather": {
+            //hideWeatherTab.start()
+            //weatherTab.opacity=0.9
             currentTab= "calendar"
+
             return;
         }
         default: {

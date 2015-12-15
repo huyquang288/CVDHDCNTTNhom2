@@ -90,46 +90,6 @@ Item {
         }
 
 
-        // icon doi kieu nhiet do
-        ImageButton {
-            id: ctem
-            width: firstNumberImage.width*0.8
-            height: width
-            anchors.left: parent.left
-            anchors.leftMargin: (firstNumberImage.x- width)/2
-            anchors.top: firstNumberImage.top
-            anchors.topMargin: (firstNumberImage.height- height*2)/3
-            source: "qrc:/images/resources/images/temperature/cactive.png"
-            onPressed: opacity= 0.6
-            onReleased: opacity= 1
-            onClicked: {
-                if (source==="qrc:/images/resources/images/temperature/cdeactive.png") {
-                    source= "qrc:/images/resources/images/temperature/cactive.png"
-                    ftem.source= "qrc:/images/resources/images/temperature/fdeactive.png"
-                    temperature= GW.Ctemperature
-                }
-            }
-        }
-        ImageButton {
-            id: ftem
-            width: ctem.width
-            height: width
-            anchors.left: ctem.left
-            anchors.top: ctem.bottom
-            anchors.topMargin: (firstNumberImage.height- height*2)/3
-            source: "qrc:/images/resources/images/temperature/fdeactive.png"
-            onPressed: opacity= 0.6
-            onReleased: opacity= 1
-            onClicked: {
-                if (source==="qrc:/images/resources/images/temperature/fdeactive.png") {
-                    source= "qrc:/images/resources/images/temperature/factive.png"
-                    ctem.source= "qrc:/images/resources/images/temperature/cdeactive.png"
-                    temperature= GW.Ftemperature
-                }
-            }
-        }
-
-
         // hai chu so cua ngay duong lich
         Image {
             id: firstNumberImage
@@ -137,7 +97,7 @@ Item {
             height: width*1.6
             x: (temperature<10) ?(square.width- width)/2 :(square.width- width- secondNumberImage.width)/2
             anchors.top: weatherIcon.bottom
-            anchors.topMargin: weatherText.height
+            anchors.topMargin: weatherText.height/2
             source: firstNumberImageSource
         }
         Image {

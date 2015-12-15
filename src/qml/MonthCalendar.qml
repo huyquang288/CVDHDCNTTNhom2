@@ -157,7 +157,7 @@ Item {
                 delegate: Rectangle {
                     width: eventsListView.width
                     height: eventItemColumn.height
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter                   
 
                     Image {
                         anchors.top: parent.top
@@ -197,6 +197,24 @@ Item {
                             text: modelData.startDate.toLocaleTimeString(calendar.locale, Locale.ShortFormat)
                             color: "#aaa"
                         }
+                    }
+
+                    ImageButton {
+                        id: deleteButton
+                        source: "qrc:/images/resources/images/delete.png"
+                        anchors.right: parent.right
+                        anchors.top: parent.top
+                        anchors.rightMargin: width/3
+                        anchors.topMargin: (parent.height- height)/2
+                        height: parent.height/1.75
+                        width: height/1.25
+                        onClicked: {
+                            var dat= calendar.selectedDate.getFullYear() +"-" +(calendar.selectedDate.getMonth()+1) +"-" +calendar.selectedDate.getDate();
+                            var query= "delete from Event where startDate='" +dat.toString() +"' AND name= '" +nameLabel.text +"')";
+                            console.log(query);
+                            eventModel.editEvent(query);
+                        }
+
                     }
                 }
             }
@@ -325,7 +343,7 @@ Item {
                     var dat= calendar.selectedDate.getFullYear() +"-" +(calendar.selectedDate.getMonth()+1) +"-" +calendar.selectedDate.getDate();
                     var tim= (hour.currentIndex+5)*3600 +(minute.currentIndex-1)*60
                     var query= "insert into Event values('" +eventNameInput.text +"', '" +dat.toString() +"', " +tim.toString() +", '" +dat.toString() +"', "+(tim+1).toString() +")";
-                    eventModel.createEvent(query);
+                    eventModel.editEvent(query);
                     hour.currentIndex= 0
                     minute.currentIndex= 0;
                     eventNameInput.text= "";
@@ -336,7 +354,6 @@ Item {
         }
 
     }
-
 
     NumberAnimation {
         id: showSetEventWindow

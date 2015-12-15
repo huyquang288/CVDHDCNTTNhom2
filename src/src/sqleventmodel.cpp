@@ -102,7 +102,7 @@ void SqlEventModel::createConnection()
     return;
 }
 
-void SqlEventModel::createEvent(QString str)
+void SqlEventModel::editEvent(QString str)
 {
     QSqlQuery query;
     // We store the time as seconds because it's easier to query.

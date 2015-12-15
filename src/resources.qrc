@@ -76,6 +76,7 @@
         <file>resources/images/left.png</file>
         <file>resources/images/eventindicator.png</file>
         <file>resources/images/cancel.png</file>
+        <file>resources/images/delete.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

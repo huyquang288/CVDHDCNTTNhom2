@@ -52,14 +52,14 @@ QString Application::category() const
 void Application::setCategory()
 {
     QString name = mName.simplified();
-    name.replace(QRegExp("[ÁÀÂÃÄ]"), "A");
-    name.replace(QRegExp("[áàâãä]"), "a");
+    name.replace(QRegExp("[ÁÀÂÃÄẢẤẮ]"), "A");
+    name.replace(QRegExp("[áàâãäả]"), "a");
     name.replace(QRegExp("[ÉÈÊẼË]"), "E");
     name.replace(QRegExp("[éèêẽë]"), "e");
     name.replace(QRegExp("[ÍÌÎĨÏ]"), "I");
     name.replace(QRegExp("[íìîĩï]"), "i");
     name.replace(QRegExp("[ÓÒÔÕÖ]"), "O");
-    name.replace(QRegExp("[óòôõö]"), "o");
+    name.replace(QRegExp("[óòôõöốồơớ]"), "o");
     name.replace(QRegExp("[ÚÙÛŨÜ]"), "U");
     name.replace(QRegExp("[úùûũü]"), "u");
     name.replace(QRegExp("[Ç]"), "C");
