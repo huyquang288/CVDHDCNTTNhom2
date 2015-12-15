@@ -167,11 +167,11 @@ Item {
                         source: "qrc:/images/resources/images/eventindicator.png"
                     }
 
-                    Rectangle {
-                        width: parent.width
-                        height: 1
-                        color: "#eee"
-                    }
+//                    Rectangle {
+//                        width: parent.width
+//                        height: 1
+//                        color: "#eee"
+//                    }
 
                     Column {
                         id: eventItemColumn
@@ -210,7 +210,7 @@ Item {
                         width: height/1.25
                         onClicked: {
                             var dat= calendar.selectedDate.getFullYear() +"-" +(calendar.selectedDate.getMonth()+1) +"-" +calendar.selectedDate.getDate();
-                            var query= "delete from Event where startDate='" +dat.toString() +"' AND name= '" +nameLabel.text +"')";
+                            var query= "delete from Event where startDate='" +dat.toString() +"' AND name= '" +nameLabel.text +"'";
                             console.log(query);
                             eventModel.editEvent(query);
                         }
@@ -273,7 +273,7 @@ Item {
         }
         TextArea {
             id: eventNameInput
-            font.pixelSize: eventNameText.font.pixelSize
+            font.pixelSize: eventNameText.font.pixelSize/1.15
             anchors.left: eventDayText.right
             anchors.leftMargin: font.pixelSize/2
             anchors.bottom: eventNameText.bottom
@@ -295,9 +295,10 @@ Item {
         }
         ComboBox {
             id: hour
-            width: parent.width/5
+            width: parent.width/5.5
             height: width/2.5
             anchors.bottom: eventDayText.bottom
+            anchors.bottomMargin: -height/3.5
             anchors.left: eventNameInput.left
             scale: 1.3
             model: ["Giờ", 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
@@ -305,10 +306,10 @@ Item {
 
         ComboBox {
             id: minute
-            width: parent.width/4
+            width: parent.width/4.5
             height: hour.height
             anchors.left: hour.right            
-            anchors.leftMargin: width/2
+            anchors.leftMargin: width/3
             anchors.bottom: hour.bottom
             scale: 1.3
             model: ["Phút", 00,01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59];
@@ -364,6 +365,10 @@ Item {
         from: 0
         to: 1
     }    
+
+    function dayColor () {
+
+    }
 
 
 }
