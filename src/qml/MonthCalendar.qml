@@ -45,7 +45,7 @@ Item {
                     Rectangle {
                         anchors.fill: parent
                         border.color: "transparent"
-                        color: (styleData.date !== undefined && styleData.selected) ?selectedDateColor :(dayColor(styleData.date) ?"red" :((styleData.date.getDay()===0 || styleData.date.getDay()===6)&&(styleData.visibleMonth && styleData.valid)) ?"#f7e8dc" :("transparent"))
+                        color: (styleData.date !== undefined && styleData.selected) ?selectedDateColor :(dayColor(styleData.date) ?"#fc571b" :((styleData.date.getDay()===0 || styleData.date.getDay()===6)&&(styleData.visibleMonth && styleData.valid)) ?"#f7e8dc" :("transparent"))
                         anchors.margins: styleData.selected ? -1 : 0
                     }
 
@@ -106,35 +106,47 @@ Item {
 
         Component {
             id: eventListHeader
-
-            Row {
-                id: eventDateRow
+            Column {
+                id: eventDateColumn
                 width: parent.width
-                height: eventDayLabel.height*1.2
+                height: eventDayLabel.height*1.8
                 spacing: 10
+                Row {
+                    id: eventDateRow
+                    width: parent.width
+                    height: eventDayLabel.height*1.25
+                    spacing: 10
 
-                Label {
-                    id: eventDayLabel
-                    text: calendar.selectedDate.getDate()
-                    font.pointSize: 40
-                    color: "#2d2121"
+                    Label {
+                        id: eventDayLabel
+                        text: calendar.selectedDate.getDate()
+                        font.pointSize: 40
+                        color: "#2d2121"
+                    }
+
+                    Column {
+                        height: eventDayLabel.height*1.2
+
+                        Label {
+                            readonly property var options: { weekday: "long" }
+                            text: Qt.locale().standaloneDayName(calendar.selectedDate.getDay(), Locale.LongFormat)
+                            font.pointSize: 20
+                            color: "#2d2121"
+                        }
+                        Label {
+                            text: Qt.locale().standaloneMonthName(calendar.selectedDate.getMonth())
+                                  + calendar.selectedDate.toLocaleDateString(Qt.locale(), " yyyy")
+                            font.pointSize: 13
+                            color: "#2d2121"
+                        }
+                    }
                 }
-
-                Column {
-                    height: eventDayLabel.height*1.2
-
-                    Label {
-                        readonly property var options: { weekday: "long" }
-                        text: Qt.locale().standaloneDayName(calendar.selectedDate.getDay(), Locale.LongFormat)
-                        font.pointSize: 20
-                        color: "#2d2121"
-                    }
-                    Label {
-                        text: Qt.locale().standaloneMonthName(calendar.selectedDate.getMonth())
-                              + calendar.selectedDate.toLocaleDateString(Qt.locale(), " yyyy")
-                        font.pointSize: 13
-                        color: "#2d2121"
-                    }
+                Label {
+                    //id: globalEventDay
+                    text: dayEvent (calendar.selectedDate);
+                    font.pointSize: 22
+                    wrapMode: Text.Wrap
+                    color: "#ff7f00"
                 }
             }
         }
@@ -145,12 +157,16 @@ Item {
             height: (parent.height > parent.width ? parent.height * 0.3 - parent.spacing : parent.height)
             border.color: Qt.darker(color, 1.2)
 
+
+
             ListView {
                 id: eventsListView
                 spacing: 15
                 clip: true
                 header: eventListHeader
-                anchors.fill: parent
+                width: parent.width
+                height: parent.height
+                anchors.top: parent.top
                 anchors.margins: 15
                 model: eventModel.eventsForDate(calendar.selectedDate)
 
@@ -367,17 +383,78 @@ Item {
     }    
 
     function dayColor (date) {
-        var d= (date.getFullYear().toString +"-");
+        var d= (date.getFullYear() +"-");
         d+= (date.getMonth()+1)
         d+= "-" +date.getDate();
+        d= d.toString();
+        console.log(d);
         switch (d) {
-        case '2015-2-8': {
+        case '2016-2-8': {
             return true
         }
-        case '2015-2-9': {
+        case '2016-2-9': {
+            return true
+        }
+        case '2016-2-7': {
+            return true
+        }
+        case '2016-2-6': {
+            return true
+        }
+        case '2016-2-10': {
+            return true
+        }
+        case '2016-1-1': {
+            return true
+        }
+        case '2016-4-30': {
+            return true
+        }
+        case '2016-4-10': {
+            return true
+        }
+        case '2016-5-1': {
             return true
         }
         default: return false;
+        }
+    }
+
+    function dayEvent (date) {
+        var d= (date.getFullYear() +"-");
+        d+= (date.getMonth()+1)
+        d+= "-" +date.getDate();
+        d= d.toString();
+        console.log(d);
+        switch (d) {
+        case '2016-2-8': {
+            return "Tết Âm Lịch"
+        }
+        case '2016-2-9': {
+            return "Tết Âm Lịch"
+        }
+        case '2016-2-7': {
+            return "Tết Âm Lịch"
+        }
+        case '2016-2-6': {
+            return "Tết Âm Lịch"
+        }
+        case '2016-2-10': {
+            return "Tết Âm Lịch"
+        }
+        case '2016-1-1': {
+            return "Tết Dương Lịch"
+        }
+        case '2016-4-30': {
+            return "Ngày Giải Phóng Miền Nam"
+        }
+        case '2016-4-10': {
+            return "Giỗ Tổ Hùng Vương"
+        }
+        case '2016-5-1': {
+            return "Ngày Quốc tế lao động"
+        }
+        default: return "";
         }
     }
 }

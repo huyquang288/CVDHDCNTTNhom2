@@ -54,6 +54,7 @@ void Application::setCategory()
     QString name = mName.simplified();
     name.replace(QRegExp("[ÁÀÂÃÄẢẤẮ]"), "A");
     name.replace(QRegExp("[áàâãäả]"), "a");
+    name.replace(QRegExp("[Đ]"), "D");
     name.replace(QRegExp("[ÉÈÊẼË]"), "E");
     name.replace(QRegExp("[éèêẽë]"), "e");
     name.replace(QRegExp("[ÍÌÎĨÏ]"), "I");

@@ -22,7 +22,6 @@ Item {
         //repeat: true
         onTriggered: {
             GW.getWeather()
-            temperature= GW.Ctemperature
         }
     }
 
@@ -32,7 +31,6 @@ Item {
         //repeat: true
         onTriggered: {
             GW.getWeather()
-            temperature= GW.Ctemperature
         }
     }
 
@@ -112,12 +110,11 @@ Item {
         Image {
             id: cencius
             width: secondNumberImage.width/1.5
-            height: width
+            height: width*1.5
             source: "qrc:/images/resources/images/cencius.png"
             anchors.left: (temperature<10) ?firstNumberImage.right :secondNumberImage.right
             anchors.top: secondNumberImage.top
-            anchors.topMargin: height/4
-            anchors.leftMargin: height/4
+            anchors.topMargin: height/15
         }
 
     }
