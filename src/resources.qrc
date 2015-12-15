@@ -66,10 +66,6 @@
         <file>resources/images/12ConGiap/snake.png</file>
         <file>resources/images/12ConGiap/tiger.png</file>
         <file>resources/images/12ConGiap/trau.png</file>
-        <file>resources/images/temperature/cactive.png</file>
-        <file>resources/images/temperature/cdeactive.png</file>
-        <file>resources/images/temperature/factive.png</file>
-        <file>resources/images/temperature/fdeactive.png</file>
         <file>resources/images/rectangle.png</file>
         <file>resources/images/ok.png</file>
         <file>resources/images/right.png</file>
@@ -77,6 +73,7 @@
         <file>resources/images/eventindicator.png</file>
         <file>resources/images/cancel.png</file>
         <file>resources/images/delete.png</file>
+        <file>resources/images/cencius.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -45,7 +45,7 @@ Item {
                     Rectangle {
                         anchors.fill: parent
                         border.color: "transparent"
-                        color: styleData.date !== undefined && styleData.selected ? selectedDateColor : ((styleData.date.getDay()===0 || styleData.date.getDay()===6)&&(styleData.visibleMonth && styleData.valid)) ?"#f7e8dc" :("transparent")
+                        color: (styleData.date !== undefined && styleData.selected) ?selectedDateColor :(dayColor(styleData.date) ?"red" :((styleData.date.getDay()===0 || styleData.date.getDay()===6)&&(styleData.visibleMonth && styleData.valid)) ?"#f7e8dc" :("transparent"))
                         anchors.margins: styleData.selected ? -1 : 0
                     }
 
@@ -273,7 +273,7 @@ Item {
         }
         TextArea {
             id: eventNameInput
-            font.pixelSize: eventNameText.font.pixelSize/1.15
+            font.pixelSize: eventNameText.font.pixelSize/1.3
             anchors.left: eventDayText.right
             anchors.leftMargin: font.pixelSize/2
             anchors.bottom: eventNameText.bottom
@@ -298,7 +298,7 @@ Item {
             width: parent.width/5.5
             height: width/2.5
             anchors.bottom: eventDayText.bottom
-            anchors.bottomMargin: -height/3.5
+            anchors.bottomMargin: -height/15
             anchors.left: eventNameInput.left
             scale: 1.3
             model: ["Giờ", 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
@@ -366,9 +366,18 @@ Item {
         to: 1
     }    
 
-    function dayColor () {
-
+    function dayColor (date) {
+        var d= (date.getFullYear().toString +"-");
+        d+= (date.getMonth()+1)
+        d+= "-" +date.getDate();
+        switch (d) {
+        case '2015-2-8': {
+            return true
+        }
+        case '2015-2-9': {
+            return true
+        }
+        default: return false;
+        }
     }
-
-
 }

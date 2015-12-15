@@ -95,7 +95,7 @@ Item {
             id: firstNumberImage
             width: wea.width/5.5
             height: width*1.6
-            x: (temperature<10) ?(square.width- width)/2 :(square.width- width- secondNumberImage.width)/2
+            x: (temperature<10) ?(square.width- width- cencius.width)/2 :(square.width- width- secondNumberImage.width- cencius.width)/2
             anchors.top: weatherIcon.bottom
             anchors.topMargin: weatherText.height/2
             source: firstNumberImageSource
@@ -103,11 +103,21 @@ Item {
         Image {
             id: secondNumberImage
             height: firstNumberImage.height
-            width: firstNumberImage.width
-            y: firstNumberImage.y
+            width: firstNumberImage.width            
             visible: (temperature<10) ?false :true
-            x: (square.width- width- firstNumberImage.width)/2 + firstNumberImage.width
+            anchors.top: firstNumberImage.top
+            anchors.left: firstNumberImage.right
             source: secondNumberImageSource
+        }
+        Image {
+            id: cencius
+            width: secondNumberImage.width/1.5
+            height: width
+            source: "qrc:/images/resources/images/cencius.png"
+            anchors.left: (temperature<10) ?firstNumberImage.right :secondNumberImage.right
+            anchors.top: secondNumberImage.top
+            anchors.topMargin: height/4
+            anchors.leftMargin: height/4
         }
 
     }
