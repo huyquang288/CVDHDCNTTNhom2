@@ -317,7 +317,7 @@ Item {
             anchors.bottomMargin: height/4
             anchors.rightMargin: height/4
             onClicked: {
-                if (eventNameInput=="" || hour.currentIndex==0 || minute.currentIndex==0) {
+                if (eventNameInput.text=="" || hour.currentIndex==0 || minute.currentIndex==0) {
                     warning.visible= true;
                 }
                 else {
@@ -333,7 +333,6 @@ Item {
                     warning.visible= false
                 }
             }
-
         }
 
     }

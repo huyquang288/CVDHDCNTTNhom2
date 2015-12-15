@@ -193,6 +193,7 @@ ApplicationWindow {
         onDoubleClicked: {
             currentTab="month"
             rightButton.visible=true;
+            leftButton.visible= false
         }
     }
 
