@@ -41,10 +41,18 @@ Item {
         width: parent.width*0.75
         height: width*0.925
 
+
         Image {
             source: "qrc:/images/resources/images/square.png"
             anchors.fill: parent
             opacity: 0.3
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                GW.getWeather()
+            }
         }
 
         Text {

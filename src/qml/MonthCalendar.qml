@@ -109,12 +109,12 @@ Item {
             Column {
                 id: eventDateColumn
                 width: parent.width
-                height: eventDayLabel.height*1.8
+                height: eventDateRow.height + globalEventDay.height+10
                 spacing: 10
                 Row {
                     id: eventDateRow
                     width: parent.width
-                    height: eventDayLabel.height*1.25
+                    height: eventDayLabel.height*1.1
                     spacing: 10
 
                     Label {
@@ -125,7 +125,7 @@ Item {
                     }
 
                     Column {
-                        height: eventDayLabel.height*1.2
+                        height: eventDayLabel.height
 
                         Label {
                             readonly property var options: { weekday: "long" }
@@ -142,7 +142,7 @@ Item {
                     }
                 }
                 Label {
-                    //id: globalEventDay
+                    id: globalEventDay
                     text: dayEvent (calendar.selectedDate);
                     font.pointSize: 22
                     wrapMode: Text.Wrap
